@@ -34,16 +34,16 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
         // Get access to layout's views
         ImageView friendimage = convertView.findViewById(R.id.friendimage);
         TextView friendname = convertView.findViewById(R.id.friendname);
-        TextView friendbio = convertView.findViewById(R.id.friendbio);
+        //TextView friendbio = convertView.findViewById(R.id.friendbio);
 
         // Getting data from friends list
         int drawable = friends.get(position).getDrawableId();
         String name = friends.get(position).getName();
-        String bio = friends.get(position).getBio();
+        //String bio = friends.get(position).getBio();
 
         // Use data to fill the layout's views
         friendname.setText(name);
-        friendbio.setText(bio);
+        //friendbio.setText(bio);
         friendimage.setImageResource(drawable);
 
         return convertView;

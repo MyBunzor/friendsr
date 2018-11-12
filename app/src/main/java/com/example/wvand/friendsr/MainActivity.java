@@ -2,9 +2,20 @@ package com.example.wvand.friendsr;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private class GridItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            System.out.println("Sup duder");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,16 +26,16 @@ public class MainActivity extends AppCompatActivity {
         friends = new ArrayList<>();
 
         // Adding the drawable id
-        int drawableIdarya = this.getResources().getIdentifier("arya", "id", this.getPackageName());
-        int drawableIdcersei = this.getResources().getIdentifier("cersei", "id", this.getPackageName());
-        int drawableIddaenerys = this.getResources().getIdentifier("daenerys", "id", this.getPackageName());
-        int drawableIdjaime = this.getResources().getIdentifier("jaime", "id", this.getPackageName());
-        int drawableIdjon = this.getResources().getIdentifier("jon", "id", this.getPackageName());
-        int drawableIdjorah = this.getResources().getIdentifier("jorah", "id", this.getPackageName());
-        int drawableIdmargaery = this.getResources().getIdentifier("margaery", "id", this.getPackageName());
-        int drawableIdmelisandre = this.getResources().getIdentifier("melisandre", "id", this.getPackageName());
-        int drawableIdsansa = this.getResources().getIdentifier("sansa", "id", this.getPackageName());
-        int drawableIdtyrion = this.getResources().getIdentifier("tyrion", "id", this.getPackageName());
+        int drawableIdarya = this.getResources().getIdentifier("arya", "drawable", this.getPackageName());
+        int drawableIdcersei = this.getResources().getIdentifier("cersei", "drawable", this.getPackageName());
+        int drawableIddaenerys = this.getResources().getIdentifier("daenerys", "drawable", this.getPackageName());
+        int drawableIdjaime = this.getResources().getIdentifier("jaime", "drawable", this.getPackageName());
+        int drawableIdjon = this.getResources().getIdentifier("jon", "drawable", this.getPackageName());
+        int drawableIdjorah = this.getResources().getIdentifier("jorah", "drawable", this.getPackageName());
+        int drawableIdmargaery = this.getResources().getIdentifier("margaery", "drawable", this.getPackageName());
+        int drawableIdmelisandre = this.getResources().getIdentifier("melisandre", "drawable", this.getPackageName());
+        int drawableIdsansa = this.getResources().getIdentifier("sansa", "drawable", this.getPackageName());
+        int drawableIdtyrion = this.getResources().getIdentifier("tyrion", "drawable", this.getPackageName());
 
         // Instantiate Friend objects
         Friend arya = new Friend("arya", "This is arya.", drawableIdarya);
@@ -49,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
         friends.add(melisandre);
         friends.add(sansa);
         friends.add(tyrion);
+
+        FriendsAdapter adapter = new FriendsAdapter(this,R.layout.grid_item, friends);
+
+        GridView homescreen = findViewById(R.id.homescreen);
+        homescreen.setAdapter(adapter);
+        homescreen.setOnItemClickListener(new GridItemClickListener());
     }
+
 
 }
