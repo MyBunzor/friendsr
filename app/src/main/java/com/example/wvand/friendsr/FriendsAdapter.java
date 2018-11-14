@@ -24,7 +24,7 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
         this.friends = objects;
     }
 
-    //
+    // Fills griditem for each friend
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
