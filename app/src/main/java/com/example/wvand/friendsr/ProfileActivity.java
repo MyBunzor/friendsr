@@ -11,6 +11,23 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private class saveRating implements RatingBar.OnRatingBarChangeListener {
+
+        // Get friend that user clicked on, to use friends name which we used as key
+        SharedPreferences.Editor editor = getSharedPreferences("settings", MODE_PRIVATE).edit();
+        Intent intent = getIntent();
+        Friend retrievedFriend = (Friend) intent.getSerializableExtra("clicked_friend");
+        String friendName = retrievedFriend.getName();
+
+        @Override
+
+        // When user clicks a friend, a float is put in clickedrating
+        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            editor.putFloat(friendName, rating);
+            editor.apply();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,24 +56,14 @@ public class ProfileActivity extends AppCompatActivity {
         RatingBar ratingBar2  = findViewById(R.id.ratingBar);
         ratingBar2.setOnRatingBarChangeListener(new saveRating());
 
+        // Put rating (float) in StoredFloat with friends' name as key
         SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-        Float StoredFloat = prefs.getFloat("clickedrating", 0.0f);
+        Float StoredFloat = prefs.getFloat(friendName, 0.0f);
 
         if (StoredFloat != 0.0f) {
 
             // User rated a friend, therefor set ratingbar
             ratingBar2.setRating(StoredFloat);
-        }
-    }
-
-    private class saveRating implements RatingBar.OnRatingBarChangeListener {
-        SharedPreferences.Editor editor = getSharedPreferences("settings", MODE_PRIVATE).edit();
-        @Override
-
-        // When user clicks a friend, a float is put in clickedrating
-        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-            editor.putFloat("clickedrating", rating);
-            editor.apply();
         }
     }
 

@@ -24,6 +24,7 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
         this.friends = objects;
     }
 
+    //
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

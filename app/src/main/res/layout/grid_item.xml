@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="0"
-        android:fontFamily="@font/almendra_display"
+        android:fontFamily="casual"
         android:padding="12dp"
         android:text="Name" />
 
     <ImageView
         android:id="@+id/friendimage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_gravity="center"
         android:layout_weight="0"
         android:padding="12dp"
