@@ -1,10 +1,15 @@
 package com.example.wvand.friendsr;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.Rating;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.RatingBar;
 
 import java.util.ArrayList;
 
@@ -12,8 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
     private class GridItemClickListener implements AdapterView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            System.out.println("Sup duder");
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+            Friend clickedFriend = (Friend) parent.getItemAtPosition(position);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("clicked_friend", clickedFriend);
+            startActivity(intent);
         }
     }
 
@@ -38,18 +46,18 @@ public class MainActivity extends AppCompatActivity {
         int drawableIdtyrion = this.getResources().getIdentifier("tyrion", "drawable", this.getPackageName());
 
         // Instantiate Friend objects
-        Friend arya = new Friend("arya", "This is arya.", drawableIdarya);
-        Friend cersei = new Friend("cersei", "This is cersei", drawableIdcersei);
-        Friend daenerys = new Friend("daenerys", "This is daenerys", drawableIddaenerys);
-        Friend jaime = new Friend("jaime", "This is jaime", drawableIdjaime);
-        Friend jon = new Friend("jon", "This is jon", drawableIdjon);
-        Friend jorah = new Friend("jorah", "This is jorah", drawableIdjorah);
-        Friend margaery = new Friend("margaery", "This is margaery", drawableIdmargaery);
-        Friend melisandre = new Friend("melisandre", "this is melisandre", drawableIdmelisandre);
-        Friend sansa = new Friend("sansa", "This is sansa", drawableIdsansa);
-        Friend tyrion = new Friend("tyrion", "This is tyrion", drawableIdtyrion);
+        Friend arya = new Friend("Arya", "This is Arya.", drawableIdarya);
+        Friend cersei = new Friend("Cersei", "This is Cersei", drawableIdcersei);
+        Friend daenerys = new Friend("Daenerys", "This is Daenerys", drawableIddaenerys);
+        Friend jaime = new Friend("Jaime", "This is Jaime", drawableIdjaime);
+        Friend jon = new Friend("Jon", "This is Jon", drawableIdjon);
+        Friend jorah = new Friend("Jorah", "This is Jorah", drawableIdjorah);
+        Friend margaery = new Friend("Margaery", "This is Margaery", drawableIdmargaery);
+        Friend melisandre = new Friend("Melisandre", "This is Melisandre", drawableIdmelisandre);
+        Friend sansa = new Friend("Sansa", "This is Sansa", drawableIdsansa);
+        Friend tyrion = new Friend("Tyrion", "This is Tyrion", drawableIdtyrion);
 
-        // Adding friend instantions to friends
+        // Adding friend instances to friends
         friends.add(arya);
         friends.add(cersei);
         friends.add(daenerys);
@@ -67,6 +75,4 @@ public class MainActivity extends AppCompatActivity {
         homescreen.setAdapter(adapter);
         homescreen.setOnItemClickListener(new GridItemClickListener());
     }
-
-
 }
