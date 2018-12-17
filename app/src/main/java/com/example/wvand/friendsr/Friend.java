@@ -2,11 +2,13 @@ package com.example.wvand.friendsr;
 
 import java.io.Serializable;
 
+// Defining the friend class
 public class Friend implements Serializable {
     private String name, bio;
     private int drawableId;
     private float rating;
 
+    // Constructor for the friends class
     public Friend(String name, String bio, int drawableId) {
         this.name = name;
         this.bio = bio;

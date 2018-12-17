@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private class GridItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+            // Create intent, pass along clickedfriend
             Friend clickedFriend = (Friend) parent.getItemAtPosition(position);
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             intent.putExtra("clicked_friend", clickedFriend);
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Friend> friends = new ArrayList<>();
+        ArrayList<Friend> friends;
         friends = new ArrayList<>();
 
         // Adding the drawable id
@@ -69,8 +71,10 @@ public class MainActivity extends AppCompatActivity {
         friends.add(sansa);
         friends.add(tyrion);
 
+        // Creating friendsadapter
         FriendsAdapter adapter = new FriendsAdapter(this,R.layout.grid_item, friends);
 
+        // Set adapter on homescreen
         GridView homescreen = findViewById(R.id.homescreen);
         homescreen.setAdapter(adapter);
         homescreen.setOnItemClickListener(new GridItemClickListener());
